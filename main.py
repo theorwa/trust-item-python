@@ -1,5 +1,6 @@
 from engines.engines_chain import EnginesChain
 from item import Item
+import os
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
@@ -22,5 +23,7 @@ def get_item(item_id):
         return jsonify({'success': False, 'message': f'{e}'})
 
 
-if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+port = int(os.environ.get("PORT", 5000))
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=port)
